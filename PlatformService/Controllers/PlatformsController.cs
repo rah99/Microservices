@@ -4,6 +4,7 @@ using PlatformService.Data;
 using PlatformService.Dtos;
 using PlatformService.Models;
 using System.Collections.Generic;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace PlatformService.Controllers
 {
@@ -21,6 +22,7 @@ namespace PlatformService.Controllers
         }
 
         [HttpGet]
+        [SwaggerResponse(200, "Returns all platforms")]
         public ActionResult<IEnumerable<PlatformReadDto>> GetPlatforms()
         {
             var platformItems = _repository.GetAllPlatforms();
@@ -29,6 +31,8 @@ namespace PlatformService.Controllers
         }
 
         [HttpGet("{id}", Name = "GetPlatformById")]
+        [SwaggerResponse(200, "Returns a single platform")]
+        [SwaggerResponse(400, "No platform found")]
         public ActionResult<PlatformReadDto> GetPlatformById(int id)
         {
             var platformItem = _repository.GetPlatformById(id);
