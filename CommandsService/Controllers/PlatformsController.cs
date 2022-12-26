@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using CommandsService.Data;
+using CommandsService.Dtos;
+using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
+using System.Collections.Generic;
 
 namespace CommandsService.Controllers
 {
@@ -8,9 +12,23 @@ namespace CommandsService.Controllers
     [ApiController]
     public class PlatformsController : ControllerBase
     {
-        public PlatformsController()
-        {
+        private readonly ICommandRepo _repository;
+        private readonly IMapper _mapper;
 
+        public PlatformsController(ICommandRepo repository, IMapper mapper)
+        {
+            _repository = repository;
+            _mapper = mapper;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<PlaformReadDto>> GetPlatforms()
+        {
+            Console.WriteLine("--> Getting Platforms from CommandService");
+
+            var platformItems = _repository.GetAllPlatforms();
+
+            return Ok(_mapper.Map<IEnumerable<PlaformReadDto>>(platformItems));
         }
 
         [HttpPost]
