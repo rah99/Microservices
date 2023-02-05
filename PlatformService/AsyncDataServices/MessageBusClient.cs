@@ -48,13 +48,13 @@ namespace PlatformService.AsyncDataServices
             }
             else
             {
-                Console.WriteLine("--> PabbitMQ connection is closed, not sending message");
+                Console.WriteLine("--> RabbitMQ connection is closed, not sending message");
             }
         }
 
         private void RabbitMQ_ConnectionShutdown(object sender, ShutdownEventArgs e)
         {
-            Console.WriteLine($"RabbitMQ connection shutdown: {e.Cause}");
+            Console.WriteLine($"RabbitMQ connection shutdown");
         }
 
         private void SendMessage(string message)

@@ -15,7 +15,6 @@ spec:
       containers:
         - name: commandsservice
           image: maddens/commandsservice:latest
-
 ---
 apiVersion: v1
 kind: Service
@@ -29,4 +28,4 @@ spec:
   - name: commandsservice
     protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 80 
