@@ -52,11 +52,6 @@ namespace PlatformService.AsyncDataServices
             }
         }
 
-        private void RabbitMQ_ConnectionShutdown(object sender, ShutdownEventArgs e)
-        {
-            Console.WriteLine($"RabbitMQ connection shutdown");
-        }
-
         private void SendMessage(string message)
         {
             var body = Encoding.UTF8.GetBytes(message);
@@ -75,6 +70,11 @@ namespace PlatformService.AsyncDataServices
                 _channel.Close();
                 _connection.Close();
             }
+        }
+
+        private void RabbitMQ_ConnectionShutdown(object sender, ShutdownEventArgs e)
+        {
+            Console.WriteLine($"RabbitMQ connection shutdown");
         }
     }
 }

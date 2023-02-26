@@ -28,4 +28,4 @@ spec:
   - name: commandsservice
     protocol: TCP
     port: 80
-    targetPort: 80 
+    targetPort: 80

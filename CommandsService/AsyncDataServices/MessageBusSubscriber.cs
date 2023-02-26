@@ -28,15 +28,16 @@ namespace CommandsService.AsyncDataServices
 
         private void InitializeRabbitMQ()
         {
-            var factory = new ConnectionFactory() { HostName = _configuration["RabbitMQHost"], Port = int.Parse(_configuration["RabbitMQPort"]) };
 
+            var factory = new ConnectionFactory() { HostName = _configuration["RabbitMQHost"], Port = int.Parse(_configuration["RabbitMQPort"]) };
+            
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
             _channel.ExchangeDeclare(exchange: "trigger", type: ExchangeType.Fanout);
             _queueName = _channel.QueueDeclare().QueueName;
             _channel.QueueBind(queue: _queueName, exchange: "trigger", routingKey: "");
 
-            Console.WriteLine("--> Listening on the Message Bus...");
+            Console.WriteLine("--> Listening on the Message Bus..");
 
             _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
         }
@@ -69,7 +70,7 @@ namespace CommandsService.AsyncDataServices
 
         public override void Dispose()
         {
-            if (_channel.IsOpen)
+            if(_channel.IsOpen)
             {
                 _channel.Close();
                 _connection.Close();

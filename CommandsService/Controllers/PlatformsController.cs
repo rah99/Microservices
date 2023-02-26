@@ -21,13 +21,13 @@ namespace CommandsService.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<PlaformReadDto>> GetPlatforms()
+        public ActionResult<IEnumerable<PlatformReadDto>> GetPlatforms()
         {
             Console.WriteLine("--> Getting Platforms from CommandService");
 
             var platformItems = _repository.GetAllPlatforms();
 
-            return Ok(_mapper.Map<IEnumerable<PlaformReadDto>>(platformItems));
+            return Ok(_mapper.Map<IEnumerable<PlatformReadDto>>(platformItems));
         }
 
         [HttpPost]

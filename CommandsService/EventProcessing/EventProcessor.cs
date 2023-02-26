@@ -13,7 +13,7 @@ namespace CommandsService.EventProcessing
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly IMapper _mapper;
 
-        public EventProcessor(IServiceScopeFactory scopeFactory, IMapper mapper)
+        public EventProcessor(IServiceScopeFactory scopeFactory, AutoMapper.IMapper mapper)
         {
             _scopeFactory = scopeFactory;
             _mapper = mapper;
@@ -42,7 +42,7 @@ namespace CommandsService.EventProcessing
             switch (eventType.Event)
             {
                 case "Platform_Published":
-                    Console.WriteLine("Platform published event detected");
+                    Console.WriteLine("--> Platform published event detected");
                     return EventType.PlatformPublished;
                 default:
                     Console.WriteLine("--> Could not determine event type");
@@ -64,7 +64,7 @@ namespace CommandsService.EventProcessing
 
                     if (!repo.ExternalPlatformExists(plat.ExternalId))
                     {
-                        repo.CretaePlatform(plat);
+                        repo.CreatePlatform(plat);
                         repo.SaveChanges();
 
                         Console.WriteLine("--> Platform added!");

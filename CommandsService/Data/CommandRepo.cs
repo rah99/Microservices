@@ -25,7 +25,7 @@ namespace CommandsService.Data
             _context.Commands.Add(command);
         }
 
-        public void CretaePlatform(Platform plat)
+        public void CreatePlatform(Platform plat)
         {
             if (null == plat)
             {
