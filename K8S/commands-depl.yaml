@@ -13,7 +13,7 @@ spec:
         app: commandsservice
     spec:
       containers:
-        - name: commandsservice
+        - name: commandservice
           image: maddens/commandsservice:latest
 ---
 apiVersion: v1
